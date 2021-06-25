@@ -22,7 +22,8 @@ public class CurrencyExchangeController {
     private static final Logger logger = LoggerFactory.getLogger(CurrencyExchangeController.class);
 
     @GetMapping("/currency-exchange/from/{from}/to/{to}")
-    public CurrencyExchange retrieve(@PathVariable String from, @PathVariable String to){
+    public CurrencyExchange retrieve(@PathVariable String from, @PathVariable String to) {
+        logger.info("currency exchange {} - {}", from, to);
         CurrencyExchange currencyExchange = currencyExchangeService.retrieve(from, to);
         currencyExchange.setEnvironment(environment.getProperty("local.server.port"));
         return currencyExchange;
